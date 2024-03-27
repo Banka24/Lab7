@@ -7,7 +7,7 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        int[] v = new int[9];
+        int[] v = new int[17];
 
         for (var i = 0; i < v.Length; i++)
         {
@@ -15,6 +15,7 @@ internal class Program
             v[i] = int.Parse(Console.ReadLine());
         }
 
+        for (int i = 0; i < v.Length; i++) Console.WriteLine($"Элемент {i + 1}: {v[i]}");
         //Нахождение минимального элемента и его номер
         int minValue = v[0];
         int minValueIndex = 0;
@@ -39,7 +40,7 @@ internal class Program
 
         //Подсчёт произведения и кол-ва элементов
         int count = 0;
-        int product = 1;
+        long product = 1;
         for (int i = 0; i < v.Length && i < x.Length; i++)
         {
             if (Abs(x[i]) > v[i])
