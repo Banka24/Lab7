@@ -8,64 +8,47 @@ internal class Program
     private static void Main(string[] args)
     {
         int[] v = new int[9];
-        SetData(ref v);
-        Task1(v);
-        int[] x = Task2(v);
-        Task3(v, x);
-    }
 
-    private static void SetData(ref int[] array)
-    {
-        for (var i = 0; i < array.Length; i++)
+        for (var i = 0; i < v.Length; i++)
         {
             Console.Write("Введите значение: ");
-            array[i] = int.Parse(Console.ReadLine());
+            v[i] = int.Parse(Console.ReadLine());
         }
-    }
 
-    private static void Task1(in int[] array)
-    {
-        int minValue = array[0];
+        //Нахождение минимального элемента и его номер
+        int minValue = v[0];
         int minValueIndex = 0;
 
-        for (int i = 1; i < array.Length; i++)
+        for (int i = 1; i < v.Length; i++)
         {
-            if (array[i] < minValue)
+            if (v[i] < minValue)
             {
-                minValue = array[i];
+                minValue = v[i];
                 minValueIndex = i;
             }
         }
 
         Console.WriteLine($"Минимальный элемент: {minValue}, его индекс: {minValueIndex + 1}");
-    }
 
-    private static int[] Task2(in int[] array)
-    {
-        int[] outArray = new int[array.Length];
-        for (int i = 0; i < array.Length; i++) outArray[i] = -4 * array[i];
-        GetInfo(outArray);
-        return outArray;
-    }
+        int[] x = new int[v.Length];
+        for (int i = 0; i < v.Length; i++) x[i] = -4 * v[i];
 
-    private static void Task3(in int[] arrayV, in int[] arrayX)
-    {
+        //Вывод массива x
+        for (int i = 0; i < x.Length; i++) Console.WriteLine($"Элемент {i + 1}: {x[i]}");
+
+
+        //Подсчёт произведения и кол-ва элементов
         int count = 0;
-
-        for (int i = 0; i < arrayV.Length && i < arrayX.Length; i++)
+        int product = 1;
+        for (int i = 0; i < v.Length && i < x.Length; i++)
         {
-            if (Abs(arrayX[i]) > arrayV[i])
+            if (Abs(x[i]) > v[i])
             {
-                Console.WriteLine(arrayX[i]);
+                product *= x[i];
                 count++;
             }
         }
 
-        Console.WriteLine($"Количество элементов: {count}");
-    }
-
-    private static void GetInfo(in int[] array)
-    {
-        for (int i = 0; i < array.Length; i++) Console.WriteLine($"Элемент {i + 1}: {array[i]}");
+        Console.WriteLine($"Произведение:{product}\nКоличество элементов: {count}");
     }
 }
